@@ -18,5 +18,8 @@ def upload_file(file_path):
         return response.json()
 
 
-result = upload_file("/Users/genekogan/eden/eden-sdk/examples/assets/test.jpg")
-print(result)
+result = upload_file("assets/test.jpg")
+
+uploaded_url = result['url']
+
+print(uploaded_url)

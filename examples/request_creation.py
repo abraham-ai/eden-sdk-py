@@ -1,17 +1,24 @@
 import requests
 import time
 
-# args = https://github.com/abraham-ai/eden-api/blob/main/mongo-init.js
 
 EDEN_API_URL = "https://api.eden.art"
 
-header = {
-    "x-api-key": "YOUR_API_KEY",
-    "x-api-secret": "YOUR_API_SECRET"
-}
+# header expects format. Load from .env
+# header = {
+#    "x-api-key": "YOUR_API_KEY",
+#    "x-api-secret": "YOUR_API_SECRET"
+#}
 
+# geneneratorName = "create" or other ones
 
-def run_task(generatorName, config):
+# confif has parameters like this, see Eden docs
+#config = {
+#    "text_input": "i am a dog"
+#}
+
+# local or server-side code for Eden post request
+def run_task(generatorName, config, header):
     request = {
         "generatorName": generatorName,
         "config": config
@@ -54,13 +61,3 @@ def run_task(generatorName, config):
         time.sleep(1)
 
 
-
-config = {
-    "text_input": "i am a dog"
-}
-
-result = run_task("create", config)
-
-output_url = result['output'][-1]
-print(output_url)
-  

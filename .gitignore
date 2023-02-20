@@ -1,0 +1,12 @@
+.DS_Store
+*.DS_Store
+node_modules
+
+# local env files except for sample
+.env.local
+.env.*.local
+.env*
+!.env.sample
+
+# pycache
+**/__pycache__/

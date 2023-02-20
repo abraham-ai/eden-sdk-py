@@ -13,9 +13,8 @@ def upload_file(file_path):
     with open(file_path, "rb") as file:
         media = file.read()
         filename = os.path.basename(file_path)
-        fileType = filename.split(".")[-1]
         files = {"media": (filename, media)}
-        response = requests.post(EDEN_API_URL + "/media/upload/?fileType=${fileType}", files=files, headers=header)
+        response = requests.post(EDEN_API_URL + "/media/upload", files=files, headers=header)
         return response.json()
 
 

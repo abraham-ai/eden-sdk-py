@@ -1,25 +1,17 @@
-import requests
 import os
+import asyncio
+import eden
 
+import dotenv
+dotenv.load_dotenv()
 
-EDEN_API_URL = "https://api.eden.art"
+eden.api_key = os.environ['EDEN_API_KEY']
+eden.api_secret = os.environ['EDEN_API_SECRET']
 
-header = {
-    "x-api-key": "YOUR_API_KEY",
-    "x-api-secret": "YOUR_API_SECRET"
-}
+file_path = "/Users/genekogan/Abraham/Misc/abraham_logo2/portrait.jpeg"
 
-def upload_file(file_path):
-    with open(file_path, "rb") as file:
-        media = file.read()
-        filename = os.path.basename(file_path)
-        files = {"media": (filename, media)}
-        response = requests.post(EDEN_API_URL + "/media/upload", files=files, headers=header)
-        return response.json()
+async def main():
+    result = await eden.media.upload(file_path)
+    print(result)
 
-
-result = upload_file("assets/test.jpg")
-
-uploaded_url = result['url']
-
-print(uploaded_url)
+asyncio.run(main())

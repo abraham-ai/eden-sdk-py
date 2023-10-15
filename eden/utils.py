@@ -1,6 +1,8 @@
+import os
 import requests
 import time
-import os
+import io
+import PIL.Image
 import json
 import eden
 
@@ -29,6 +31,21 @@ def get(endpoint):
 
 def post(endpoint, data):
     return http_request("POST", endpoint, data)
+
+
+def download_to_pil(creation):
+    """Download and convert to PIL"""
+    
+    # Ensure creation has required attributes
+    if 'uri' not in creation or '_id' not in creation:
+        raise ValueError("The provided creation is missing required attributes.")
+    
+    response = requests.get(creation['uri'])
+    response.raise_for_status()
+    
+    content = io.BytesIO(response.content)
+    image = PIL.Image.open(content)
+    return image
 
 
 def save_creation(creation, creation_config, output_folder="eden_creations", fields_to_add = {}):

@@ -4,6 +4,7 @@ import eden
 import dotenv
 dotenv.load_dotenv()
 
+eden.api_url = os.environ['EDEN_API_URL'] or "https://api.eden.art"
 eden.api_key = os.environ['EDEN_API_KEY']
 eden.api_secret = os.environ['EDEN_API_SECRET']
 

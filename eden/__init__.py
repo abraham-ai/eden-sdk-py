@@ -1,5 +1,6 @@
 from . import tasks
 from . import media
+from . import collections
 
 class EdenTaskFailedError(Exception):
     pass
